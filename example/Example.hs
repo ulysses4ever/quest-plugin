@@ -1,9 +1,9 @@
 module Main where
 
 (?) :: a -> b -> a
-(?) a _b = undefined
+(?) = undefined
 
 test :: Int
-test = 42 ? undefined ? 5
+test = 42 ? 41 ? 40
 
 main = putStrLn $ show test
