@@ -28,4 +28,10 @@ transform
 transform _dflags = SYB.everywhereM (SYB.mkM transform')
   where
     transform' :: LHsExpr GhcPs -> GHC.Hsc (LHsExpr GhcPs)
-    transform' = pure
+    transform' e@(L l (OpApp _ o1 (L _ (HsVar _ (L _ (Unqual n)))) o3)) =
+      pure $ case occNameString n of
+        "?" -> o1
+        _   -> e
+
+    transform' e = do
+      pure e
